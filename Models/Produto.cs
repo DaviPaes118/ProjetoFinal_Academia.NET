@@ -8,6 +8,7 @@ namespace ProjetoFinal.Models
         public int ProdutoID { get; set; }
         public string Nome { get; set; }
         [Column(TypeName = "decimal(18,2)"), Required]
+        [DataType(DataType.Currency)]
         public decimal PrecoUnit { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProjetoFinal.Models;
+using System.Globalization;
 
 namespace ProjetoFinal
 {
@@ -24,6 +25,19 @@ namespace ProjetoFinal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //correção do idioma...
+            var cultureInfo = new CultureInfo("pt-BR");
+
+            cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+            cultureInfo.NumberFormat.CurrencyDecimalSeparator = ",";
+            cultureInfo.NumberFormat.NumberDecimalDigits = 2;
+            cultureInfo.NumberFormat.CurrencyDecimalDigits = 2;
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            //fim da correção do idioma...
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

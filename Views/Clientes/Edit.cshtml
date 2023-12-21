@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
+<h1 class="text-center">Editar</h1>
 
-<h4>Cliente</h4>
+<h4>Cliente: @Model.Nome</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -33,4 +33,12 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            var $CPF = $("#CPF");
+            $CPF.mask('000.000.000-00', { reverse: true });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 }
