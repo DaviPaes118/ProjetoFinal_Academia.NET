@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Fechamentos de Caixa</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-calculator-fill"></i> Novo Fechamento</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.DataFechamento)
@@ -21,27 +21,26 @@
             <th>
                 @Html.DisplayNameFor(model => model.ValorFinal)
             </th>
-            <th></th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFechamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValorInicial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValorFinal)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FechamentoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FechamentoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FechamentoID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFechamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorInicial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorFinal)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.FechamentoID" class="btn btn-info"><i class="bi bi-info-circle-fill"></i>Info</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

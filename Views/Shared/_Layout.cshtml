@@ -16,16 +16,16 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Compras" asp-action="Index">ProjetoFinal</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Compras" asp-action="Index">SGFC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
@@ -34,6 +34,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Compras" asp-action="Index">Compras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Caixas" asp-action="Index">Fechamento</a>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +51,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - ProjetoFinal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 | SGFC - Sistema de Gerenciamento e Fechamento de Caixa | Criado por: <a href="https://www.linkedin.com/in/davi-paes-a8a365236/" target="_blank">Davi Paes</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
