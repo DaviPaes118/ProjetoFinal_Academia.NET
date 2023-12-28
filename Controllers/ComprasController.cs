@@ -21,7 +21,7 @@ namespace ProjetoFinal.Controllers
         // GET: Compras
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Compras.Include(c => c.Cliente);
+            var contexto = _context.Compras.Include(c => c.Cliente).Include(p => p.Produto);
             return View(await contexto.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace ProjetoFinal.Controllers
 
             var compra = await _context.Compras
                 .Include(c => c.Cliente)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.CompraID == id);
             if (compra == null)
             {
@@ -48,6 +49,7 @@ namespace ProjetoFinal.Controllers
         public IActionResult Create()
         {
             ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "CPF");
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome");
             return View();
         }
 
@@ -56,16 +58,18 @@ namespace ProjetoFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompraID,ClienteID,Data,FormaPagamento")] Compra compra)
+        public async Task<IActionResult> Create([Bind("CompraID,ClienteID,ProdutoID,Data,FormaPagamento")] Compra compra)
         {
-            if (ModelState.IsValid)
-            {
+            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "Nome", compra.ClienteID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", compra.ProdutoID);
+
+            //if (ModelState.IsValid)
+            //{
                 _context.Add(compra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "CPF", compra.ClienteID);
-            return View(compra);
+            //}
+            //return View(compra);
         }
 
         // GET: Compras/Edit/5
@@ -82,6 +86,7 @@ namespace ProjetoFinal.Controllers
                 return NotFound();
             }
             ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "CPF", compra.ClienteID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", compra.ProdutoID);
             return View(compra);
         }
 
@@ -90,35 +95,37 @@ namespace ProjetoFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompraID,ClienteID,Data,FormaPagamento")] Compra compra)
+        public async Task<IActionResult> Edit(int id, [Bind("CompraID,ClienteID,ProdutoID,Data,FormaPagamento")] Compra compra)
         {
             if (id != compra.CompraID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "Nome", compra.ClienteID);
+            ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", compra.ProdutoID);
+
+            // if (ModelState.IsValid)
+            // {
+            try
             {
-                try
-                {
-                    _context.Update(compra);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompraExists(compra.CompraID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(compra);
+                await _context.SaveChangesAsync();
             }
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "CPF", compra.ClienteID);
-            return View(compra);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CompraExists(compra.CompraID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+            //}
+            //return View(compra);
         }
 
         // GET: Compras/Delete/5
@@ -131,6 +138,7 @@ namespace ProjetoFinal.Controllers
 
             var compra = await _context.Compras
                 .Include(c => c.Cliente)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.CompraID == id);
             if (compra == null)
             {
@@ -154,14 +162,14 @@ namespace ProjetoFinal.Controllers
             {
                 _context.Compras.Remove(compra);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CompraExists(int id)
         {
-          return (_context.Compras?.Any(e => e.CompraID == id)).GetValueOrDefault();
+            return (_context.Compras?.Any(e => e.CompraID == id)).GetValueOrDefault();
         }
     }
 }

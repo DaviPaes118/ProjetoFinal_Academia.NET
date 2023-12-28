@@ -16,12 +16,21 @@
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Cliente.CPF)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FormaPagamento)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto.PrecoUnit)
+            </th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +38,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cliente.CPF)
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+                <td>
+                    @item.Cliente.MostrarCPF()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Data)
@@ -38,7 +50,12 @@
                     @Html.DisplayFor(modelItem => item.FormaPagamento)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CompraID" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</a> |
+                    @Html.DisplayFor(modelItem => item.Produto.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produto.PrecoUnit)
+                </td>
+                <td>
                     <a asp-action="Details" asp-route-id="@item.CompraID" class="btn btn-info"><i class="bi bi-info-circle-fill"></i> Info</a> |
                     <a asp-action="Delete" asp-route-id="@item.CompraID" class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Deletar</a>
                 </td>

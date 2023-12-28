@@ -12,8 +12,8 @@ using ProjetoFinal.Models;
 namespace ProjetoFinal.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20231218232506_nova-tabela-adicionada")]
-    partial class novatabelaadicionada
+    [Migration("20231228005622_mudança na model FechamentoCaixa")]
+    partial class mudançanamodelFechamentoCaixa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,46 +59,50 @@ namespace ProjetoFinal.Migrations
                     b.Property<int>("ClienteID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime?>("Data")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("FechamentoCaixaFechamentoID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FormaPagamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProdutoID")
+                        .HasColumnType("int");
 
                     b.HasKey("CompraID");
 
                     b.HasIndex("ClienteID");
 
-                    b.ToTable("Compras");
-                });
-
-            modelBuilder.Entity("ProjetoFinal.Models.ItemCompra", b =>
-                {
-                    b.Property<int>("ItemCompraID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemCompraID"), 1L, 1);
-
-                    b.Property<int>("CompraID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Qtd")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ValorUnit")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ItemCompraID");
-
-                    b.HasIndex("CompraID");
+                    b.HasIndex("FechamentoCaixaFechamentoID");
 
                     b.HasIndex("ProdutoID");
 
-                    b.ToTable("ItemCompras");
+                    b.ToTable("Compras");
+                });
+
+            modelBuilder.Entity("ProjetoFinal.Models.FechamentoCaixa", b =>
+                {
+                    b.Property<int>("FechamentoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FechamentoID"), 1L, 1);
+
+                    b.Property<DateTime>("DataFechamento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("ValorFinal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ValorInicial")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("FechamentoID");
+
+                    b.ToTable("Caixas");
                 });
 
             modelBuilder.Entity("ProjetoFinal.Models.Produto", b =>
@@ -129,16 +133,9 @@ namespace ProjetoFinal.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("ProjetoFinal.Models.ItemCompra", b =>
-                {
-                    b.HasOne("ProjetoFinal.Models.Compra", "Compra")
-                        .WithMany("Itens")
-                        .HasForeignKey("CompraID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("ProjetoFinal.Models.FechamentoCaixa", null)
+                        .WithMany("Compras")
+                        .HasForeignKey("FechamentoCaixaFechamentoID");
 
                     b.HasOne("ProjetoFinal.Models.Produto", "Produto")
                         .WithMany()
@@ -146,7 +143,7 @@ namespace ProjetoFinal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Compra");
+                    b.Navigation("Cliente");
 
                     b.Navigation("Produto");
                 });
@@ -156,9 +153,9 @@ namespace ProjetoFinal.Migrations
                     b.Navigation("Compras");
                 });
 
-            modelBuilder.Entity("ProjetoFinal.Models.Compra", b =>
+            modelBuilder.Entity("ProjetoFinal.Models.FechamentoCaixa", b =>
                 {
-                    b.Navigation("Itens");
+                    b.Navigation("Compras");
                 });
 #pragma warning restore 612, 618
         }
