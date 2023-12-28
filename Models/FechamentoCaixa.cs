@@ -12,6 +12,8 @@ namespace ProjetoFinal.Models
         public decimal ValorInicial { get; set; }
         [Display(Name = "Fechamento")]
         public decimal ValorFinal { get; set; }
-        public ICollection<Compra> Compras { get; set; }
+        //public ICollection<Compra> Compras { get; set; }
+        public int CompraID { get; set; }
+        public Compra Compra { get; set; }
     }
 }
