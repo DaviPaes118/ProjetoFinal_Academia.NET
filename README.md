@@ -20,6 +20,8 @@ Esse projeto tem o objetivo de ajudar lojas a gerenciar seus produtos, clientes,
 ```bash
 $ git clone https://github.com/DaviPaes118/ProjetoFinal_Academia.NET.git
 ```
+## 📹 Vídeo Demonstrando o Projeto
+[Vídeo demonstrativo](https://www.youtube.com/watch?v=MK3xZM5bp6E)
 
 ## Status do Projeto
 🚧 === Projeto em construção === 🚧
