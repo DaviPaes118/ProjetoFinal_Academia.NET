@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CPF)
             </th>
+            <th colspan="2">
+                Local
+            </th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -31,6 +34,9 @@
                 <td>
                     @* @Html.DisplayFor(modelItem => item.CPF) *@
                     @item.MostrarCPF()
+                </td>
+                <td colspan="2">
+                    @item.Cidade / @item.Estado
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ClienteID" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</a> |
