@@ -31,7 +31,7 @@ namespace ProjetoFinal.Controllers
             ViewData["dataSel"] = dataSel;
 
             var fechamento = _context.Compras
-                .Where(c => c.Data == dataSel.Date)
+                .Where(c => c.Data.Date == dataSel.Date)
                 .Include(p => p.Produto)
                 .Include(cl => cl.Cliente)
                 .ToList();
