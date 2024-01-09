@@ -25,6 +25,19 @@ namespace ProjetoFinal.Controllers
             return View(await contexto.ToListAsync());
         }
 
+        [HttpPost]
+        public IActionResult FechamentoCaixa(DateTime dataSel)
+        {
+            ViewData["dataSel"] = dataSel;
+
+            var fechamento = _context.Compras
+                .Where(c => c.Data == dataSel.Date)
+                .Include(p => p.Produto)
+                .Include(cl => cl.Cliente)
+                .ToList();
+            return View(fechamento);
+        }
+
         // GET: Compras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
