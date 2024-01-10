@@ -24,7 +24,11 @@ $ git clone https://github.com/DaviPaes118/ProjetoFinal_Academia.NET.git
 [Vídeo demonstrativo](https://www.youtube.com/watch?v=MK3xZM5bp6E)
 
 ## Status do Projeto
-🚧 === Projeto em construção === 🚧
+Concluído :white_check_mark:
+
+## Imagens do Projeto
+
+
 
 ## 👨 Author
 [Davi Paes](https://github.com/DaviPaes118)
