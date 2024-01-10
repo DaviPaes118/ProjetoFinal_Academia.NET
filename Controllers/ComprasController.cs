@@ -76,13 +76,10 @@ namespace ProjetoFinal.Controllers
             ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "Nome", compra.ClienteID);
             ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", compra.ProdutoID);
 
-            //if (ModelState.IsValid)
-            //{
                 _context.Add(compra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            //}
-            //return View(compra);
+            
         }
 
         // GET: Compras/Edit/5
@@ -118,8 +115,6 @@ namespace ProjetoFinal.Controllers
             ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "Nome", compra.ClienteID);
             ViewData["ProdutoID"] = new SelectList(_context.Produtos, "ProdutoID", "Nome", compra.ProdutoID);
 
-            // if (ModelState.IsValid)
-            // {
             try
             {
                 _context.Update(compra);
@@ -137,8 +132,7 @@ namespace ProjetoFinal.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
-            //}
-            //return View(compra);
+            
         }
 
         // GET: Compras/Delete/5
