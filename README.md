@@ -28,7 +28,11 @@ Concluído :white_check_mark:
 
 ## Imagens do Projeto
 
+![Gerenciamento de Clientes](https://github.com/DaviPaes118/ProjetoFinal_Academia.NET/assets/105086381/1d473b75-8105-46cf-a641-a54c028e843c)
 
+![Tela de Compras feitas](https://github.com/DaviPaes118/ProjetoFinal_Academia.NET/assets/105086381/14068f71-40c6-4a8b-b598-e121b80bec84)
+
+![Tela do Fechamento de Caixa](https://github.com/DaviPaes118/ProjetoFinal_Academia.NET/assets/105086381/7f56ff20-c450-491b-bb88-f74d24b28489)
 
 ## 👨 Author
 [Davi Paes](https://github.com/DaviPaes118)
